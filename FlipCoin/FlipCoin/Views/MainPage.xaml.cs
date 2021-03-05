@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlipCoin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,20 +8,28 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace FlipCoin
+namespace FlipCoin 
 {
   //public event PropertyChangedEventHandler PropertyChanged;
   public partial class MainPage : ContentPage
   {
+    readonly MainView _vm;
     int Flips { get; set; }
 
     //bool clicked = true;
     public MainPage()
     {
       InitializeComponent();
+      BindingContext = _vm = new MainView();
     }
 
-   
+    protected override void OnAppearing()
+    {
+      _vm.ToggleAccelerometer();
+    }
+
+
+
     void OnButtonClicked(Object sender, EventArgs e)
     {
       Random rand = new Random();
