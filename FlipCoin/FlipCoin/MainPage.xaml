@@ -12,6 +12,7 @@
         
             <Grid>
 
+                
                 <Frame 
                        x:Name="Tails"
                        CornerRadius="320"
@@ -23,7 +24,8 @@
                        IsClippedToBounds="True"
                        IsVisible="true">
                     <Image Source="tails3.png"  />
-                </Frame>    
+                </Frame>  
+                
             <!--<Image 
                     x:Name="Heads" 
                     Source="SamuelHead.jpg" 
@@ -40,7 +42,8 @@
                    HorizontalOptions="Center"
                    Padding="0"
                    IsClippedToBounds="True"
-                   IsVisible="false">
+                   IsVisible="true">
+                <!--<Image  Source="{Binding ProductImage}"  />-->
                 <Image Source="SamuelHead.jpg"  />
             </Frame>
         </Grid>
