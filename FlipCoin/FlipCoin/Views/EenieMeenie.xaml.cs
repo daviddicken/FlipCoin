@@ -16,5 +16,14 @@ namespace FlipCoin.Views
         {
             InitializeComponent();
         }
-    }
+
+        private async void GoToMainPage(Object sender, EventArgs e)
+        {
+          await Navigation.PushAsync(new MainPage());
+        }
+    //protected virtual bool OnBackButtonPressed()
+    //{
+
+    //}
+  }
 }

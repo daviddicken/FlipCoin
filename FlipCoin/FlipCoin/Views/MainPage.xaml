@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FlipCoin.ViewModels"
-             x:Class="FlipCoin.MainPage">
+             x:Class="FlipCoin.MainPage"
+             NavigationPage.HasNavigationBar="false">
 
     <ContentPage.BindingContext>
         <vm:MainView />
@@ -14,11 +15,18 @@
                 <Label Text="Coin Flip" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
+            <Button Text="Eenie-Meenie"
+                    BackgroundColor="#B57EDC"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    Margin="0, 20"                 
+                    Clicked="GoToEenieMeenie"/>
+
             <Grid>
 
                 <Frame           
                     CornerRadius="320"
-                    Margin=" 0, 60"
+                    Margin=" 0, 30"
                     HeightRequest="290"
                     WidthRequest="290"
                     HorizontalOptions="Center"
@@ -29,6 +37,7 @@
                 </Frame>
             </Grid>
 
+            
             <Button Text="Flip"
                     BackgroundColor="#B57EDC"
                     FontSize="36"

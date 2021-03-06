@@ -1,4 +1,5 @@
 ﻿using FlipCoin.ViewModels;
+using FlipCoin.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,14 +26,19 @@ namespace FlipCoin
 
     protected override void OnAppearing()
     {
-      _vm.ToggleAccelerometer();
+      //_vm.ToggleAccelerometer();
       _vm.Path = "SamuelHead.jpg";
     }
 
     void OnButtonClicked(Object sender, EventArgs e)
     {      
       _vm.ChangePic();
-    }    
+    } 
+    
+    private async void GoToEenieMeenie(Object sender, EventArgs e)
+    {
+      await Navigation.PushAsync(new EenieMeenie());
+    }
   }  
 }
 

@@ -71,13 +71,13 @@ namespace FlipCoin.ViewModels
       Z = data.Acceleration.Z;
     }
 
-    public void ToggleAccelerometer()
+    public void TurnOnAccelerometer()
     {
       try
       {
-        if (Accelerometer.IsMonitoring)
-          Accelerometer.Stop();
-        else
+        if (!Accelerometer.IsMonitoring)
+          //Accelerometer.Stop();
+        //else
           Accelerometer.Start(speed);
       }
       catch (FeatureNotEnabledException fnsEx)
@@ -90,9 +90,15 @@ namespace FlipCoin.ViewModels
       }
     }
 
-    //============ Coin flip =================
-   
-    public void ChangePic()
+    public void TurnOffAccelerometer()
+    {
+      if (Accelerometer.IsMonitoring)
+        Accelerometer.Stop();
+    }
+
+        //============ Coin flip =================
+
+        public void ChangePic()
     {     
       Random rand = new Random();
       int numOfFlips = rand.Next(10, 30);
