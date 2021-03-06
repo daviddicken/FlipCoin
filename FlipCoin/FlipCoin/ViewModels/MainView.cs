@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -8,10 +11,30 @@ namespace FlipCoin.ViewModels
 {
   class MainView : BaseViewModel
   {
+    //public event PropertyChangedEventHandler PropertyChanged;
+
     private float x;
     private float y;
     private float z;
-    private int Flips;
+    private string path;
+
+    public string Path
+    {
+      get => path;
+      set => SetProperty(ref path, value);
+    }
+    //public string Path
+    //{
+    //  get { return path; }
+
+    //  set
+    //  {
+    //    if (path == value) return;
+
+    //    path = value;
+    //    OnPropertyChanged(nameof(Path));
+    //  }
+    //}
 
     public float X
     {
@@ -31,6 +54,7 @@ namespace FlipCoin.ViewModels
       set => SetProperty(ref z, value);
     }
 
+//================== Accelerometer =================
     SensorSpeed speed = SensorSpeed.UI;
 
     public MainView()
@@ -43,50 +67,9 @@ namespace FlipCoin.ViewModels
       var data = e.Reading;
       X = data.Acceleration.X;
       Y = data.Acceleration.Y;
+      if (Y > .5) ChangePic();
       Z = data.Acceleration.Z;
-
-      
-
     }
-
-    //public void Flip()
-    //{
-    //  if (Y > 0.5)
-    //  {
-    //    Random rand = new Random();
-    //    int flips = rand.Next(10, 30);
-    //    Flips = 0;
-    //    // Modified Alan's timer for this feature
-    //    Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
-    //    {
-    //      Flips++;
-    //      if (Flips < flips)
-    //      {
-    //        Device.BeginInvokeOnMainThread(() => RandomNum());
-    //        return true;
-    //      }
-    //      return false;
-    //    });
-    //  }
-    //}
-
-    //public void RandomNum()
-    //{
-    //  Random rand = new Random();
-    //  int flips = rand.Next(100, 300);
-
-    //  if (Heads.IsVisible)
-    //  {
-    //    Tails.IsVisible = true;
-    //    Heads.IsVisible = false;
-    //  }
-    //  else
-    //  {
-    //    Tails.IsVisible = false;
-    //    Heads.IsVisible = true;
-    //  }
-
-    //}
 
     public void ToggleAccelerometer()
     {
@@ -96,20 +79,63 @@ namespace FlipCoin.ViewModels
           Accelerometer.Stop();
         else
           Accelerometer.Start(speed);
-          
-          
-
       }
-      catch(FeatureNotEnabledException fnsEx)
+      catch (FeatureNotEnabledException fnsEx)
       {
         Console.WriteLine("Device does not support Accelerometers");
       }
-      catch(Exception e)
+      catch (Exception e)
       {
         Console.WriteLine("Something went wrong");
       }
     }
 
+    //============ Coin flip =================
+   
+    public void ChangePic()
+    {     
+      Random rand = new Random();
+      int numOfFlips = rand.Next(10, 30);
+      int flipCounter = 0;
+      // Modified Alan's timer for this feature
+      Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
+      {
+        flipCounter++;
+        if (flipCounter <= numOfFlips)
+        {
+          Device.BeginInvokeOnMainThread(() => CyclePics(flipCounter));
+          return true;
+        }
+        return false;
+      });
+      
+    }
+
+    public void CyclePics(int i)
+    {      
+      if (i % 2 == 0) Path = "tails1.png";
+      else Path = "SamuelHead.jpg";
+    }
 
   }
 }
+
+//===================== ZombieLand =============================
+//public void ChangePic(int num)
+//{
+//  for(int i = 0; i < num; i++)
+//  {
+//    if (i % 2 == 0)
+//    {
+//      Path = "tails1.png";
+//    }
+//    else
+//    {
+//      Path = "SamuelHead.jpg";
+//    }
+//    Console.WriteLine("go to sleep");
+//    Thread.Sleep(500);
+//    Console.WriteLine("wake up");
+//  }
+
+//}
