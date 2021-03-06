@@ -28,11 +28,6 @@
                     <Image Source="{Binding Path}"  />
                 </Frame>
             </Grid>
-            
-            
-            <Label Text="{Binding X}" />
-            <Label Text="{Binding Y}" />
-            <Label Text="{Binding Z}" />
 
             <Button Text="Flip"
                     BackgroundColor="#B57EDC"
