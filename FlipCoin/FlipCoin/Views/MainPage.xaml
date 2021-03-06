@@ -15,36 +15,19 @@
             </Frame>
 
             <Grid>
-                <Frame 
-                        x:Name="Tails"
-                        CornerRadius="320"
-                        Margin=" 0, 60"
-                        HeightRequest="290"
-                        WidthRequest="290"
-                        HorizontalOptions="Center"
-                        Padding="0"
-                        IsClippedToBounds="True"
-                        IsVisible="true">
-                        <Image Source="tails3.png"  />
-                </Frame>  
-                <Frame 
-                       x:Name="Heads"
-                       CornerRadius="320"
-                       Margin=" 0, 60"
-                       HeightRequest="290"
-                       WidthRequest="290"
-                       HorizontalOptions="Center"
-                       Padding="0"
-                       IsClippedToBounds="True"
-                       IsVisible="true">
-                       <Image Source="SamuelHead.jpg"  />
+
+                <Frame           
+                    CornerRadius="320"
+                    Margin=" 0, 60"
+                    HeightRequest="290"
+                    WidthRequest="290"
+                    HorizontalOptions="Center"
+                    Padding="0"
+                    IsClippedToBounds="True"
+                    IsVisible="true">
+                    <Image Source="{Binding Path}"  />
                 </Frame>
             </Grid>
-
-        
-            <Label Text="{Binding X}" />
-            <Label Text="{Binding Y}" />
-            <Label Text="{Binding Z}" />
 
             <Button Text="Flip"
                     BackgroundColor="#B57EDC"

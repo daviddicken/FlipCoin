@@ -16,56 +16,23 @@ namespace FlipCoin
     readonly MainView _vm;
     int Flips { get; set; }
 
-    //bool clicked = true;
     public MainPage()
     {
       InitializeComponent();
+      // Allows access to methods and properties in the MainView
       BindingContext = _vm = new MainView();
     }
 
     protected override void OnAppearing()
     {
       _vm.ToggleAccelerometer();
+      _vm.Path = "SamuelHead.jpg";
     }
-
-
 
     void OnButtonClicked(Object sender, EventArgs e)
-    {
-      Random rand = new Random();
-      int flips = rand.Next(10, 30);
-      Flips = 0;
-      // Modified Alan's timer for this feature
-      Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
-      {
-        Flips++;
-        if(Flips < flips)
-        {
-          Device.BeginInvokeOnMainThread(() => RandomNum());
-          return true;
-        }       
-        return false;
-      });    
-  }
-  
-    public void RandomNum()
-    {
-      Random rand = new Random();
-      int flips = rand.Next(100, 300);
-
-      if (Heads.IsVisible)
-      {
-        Tails.IsVisible = true;
-        Heads.IsVisible = false;
-      }
-      else
-      {
-        Tails.IsVisible = false;
-        Heads.IsVisible = true;
-      }
-      
-    }
-      
-  }
+    {      
+      _vm.ChangePic();
+    }    
+  }  
 }
 
