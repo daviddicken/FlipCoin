@@ -24,7 +24,7 @@
 
             <Grid>
 
-                <Frame           
+                <Frame                   
                     CornerRadius="320"
                     Margin=" 0, 30"
                     HeightRequest="290"
@@ -32,8 +32,9 @@
                     HorizontalOptions="Center"
                     Padding="0"
                     IsClippedToBounds="True"
-                    IsVisible="true">
-                    <Image Source="{Binding Path}"  />
+                    IsVisible="true"
+                    >
+                    <Image Source="{Binding Path}"/>
                 </Frame>
             </Grid>
 

@@ -1,6 +1,7 @@
 ﻿using FlipCoin.ViewModels;
 using FlipCoin.Views;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +20,8 @@ namespace FlipCoin
 
     protected override void OnStart()
     {
-      _vm.TurnOnAccelerometer();
+      SensorSpeed speed = SensorSpeed.UI;
+      _vm.TurnOnAccelerometer(speed);
     }
 
     protected override void OnSleep()
@@ -29,7 +31,8 @@ namespace FlipCoin
 
     protected override void OnResume()
     {
-      _vm.TurnOnAccelerometer();
+      SensorSpeed speed = SensorSpeed.UI;
+      _vm.TurnOnAccelerometer(speed);
     }
   }
 }

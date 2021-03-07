@@ -23,18 +23,6 @@ namespace FlipCoin.ViewModels
       get => path;
       set => SetProperty(ref path, value);
     }
-    //public string Path
-    //{
-    //  get { return path; }
-
-    //  set
-    //  {
-    //    if (path == value) return;
-
-    //    path = value;
-    //    OnPropertyChanged(nameof(Path));
-    //  }
-    //}
 
     public float X
     {
@@ -54,13 +42,14 @@ namespace FlipCoin.ViewModels
       set => SetProperty(ref z, value);
     }
 
-//================== Accelerometer =================
+    //================== Accelerometer =================
     SensorSpeed speed = SensorSpeed.UI;
 
     public MainView()
     {
       Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
     }
+
 
     void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
     {
@@ -71,13 +60,11 @@ namespace FlipCoin.ViewModels
       Z = data.Acceleration.Z;
     }
 
-    public void TurnOnAccelerometer()
+    public void TurnOnAccelerometer(SensorSpeed speed)
     {
       try
       {
         if (!Accelerometer.IsMonitoring)
-          //Accelerometer.Stop();
-        //else
           Accelerometer.Start(speed);
       }
       catch (FeatureNotEnabledException fnsEx)
@@ -96,10 +83,12 @@ namespace FlipCoin.ViewModels
         Accelerometer.Stop();
     }
 
-        //============ Coin flip =================
+   //============ Coin flip =================
 
-        public void ChangePic()
-    {     
+   
+    public void ChangePic()
+    {
+      TurnOffAccelerometer();
       Random rand = new Random();
       int numOfFlips = rand.Next(10, 30);
       int flipCounter = 0;
@@ -112,6 +101,7 @@ namespace FlipCoin.ViewModels
           Device.BeginInvokeOnMainThread(() => CyclePics(flipCounter));
           return true;
         }
+        TurnOnAccelerometer(speed);
         return false;
       });
       
@@ -126,22 +116,3 @@ namespace FlipCoin.ViewModels
   }
 }
 
-//===================== ZombieLand =============================
-//public void ChangePic(int num)
-//{
-//  for(int i = 0; i < num; i++)
-//  {
-//    if (i % 2 == 0)
-//    {
-//      Path = "tails1.png";
-//    }
-//    else
-//    {
-//      Path = "SamuelHead.jpg";
-//    }
-//    Console.WriteLine("go to sleep");
-//    Thread.Sleep(500);
-//    Console.WriteLine("wake up");
-//  }
-
-//}

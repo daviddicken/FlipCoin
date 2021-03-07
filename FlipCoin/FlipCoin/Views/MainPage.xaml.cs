@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FlipCoin 
@@ -26,7 +27,6 @@ namespace FlipCoin
 
     protected override void OnAppearing()
     {
-      //_vm.ToggleAccelerometer();
       _vm.Path = "SamuelHead.jpg";
     }
 
